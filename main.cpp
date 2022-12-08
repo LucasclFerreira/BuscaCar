@@ -5,6 +5,7 @@
 #include <string.h>
 
 using namespace std;
+
 // criando a estrutura para armazenar dados
 typedef struct Tveiculo {
   string modelo;
@@ -22,10 +23,11 @@ typedef struct Tveiculo {
   float valor;
 
 } Tveiculo;
+
 // busca o endereco de memoria da placa
 Tveiculo *busca(Tveiculo *bd[], int tam, string placa) {
   int i;
-  for (i = 0; i < tam; i++) { // percorre todo vetor para encontrar a placa
+  for (i = 0; i < tam; i++) {
     if (bd[i]->placa == placa) {
       return bd[i];
     }
@@ -36,22 +38,17 @@ Tveiculo *busca(Tveiculo *bd[], int tam, string placa) {
   return NULL;
 }
 
-int busca1(Tveiculo *bd[], int tam,
-           string placa) { // busca o indice da posiçao do veiculo no vetor
+int busca1(Tveiculo *bd[], int tam, string placa) { 
   int i;
   for (i = 0; i < tam; i++) {
     if (bd[i]->placa == placa) {
       return i;
     }
   }
-  if (i == tam) {
-    // cout << "não há um carro com essa placa";
-  }
   return -1;
 }
 
-int inserir(Tveiculo *bd[],
-            int *tam) { // cria um novo veiculo para poder adicionar
+int inserir(Tveiculo *bd[], int *tam) {
   if (*tam < 50) {
     string dados;
     int dados_num;
@@ -60,8 +57,7 @@ int inserir(Tveiculo *bd[],
     cout << "Digite qual a placa do automovel: ";
     cin >> dados;
     int p = busca1(bd, *tam, dados);
-    if (p == -1) { // verifica o retorno caso seja -1 o veiculo não existe,
-                   // assim é possivel adicionar
+    if (p == -1) {
       bd[*tam] = new Tveiculo;
       bd[*tam]->placa = dados;
       cout << "Digite o modelo do automovel: ";
@@ -106,29 +102,21 @@ int inserir(Tveiculo *bd[],
       dados_numF = atoi(conv);
       bd[*tam]->valor = dados_numF;
       *tam = *tam + 1;
-      return 1;
+      return *tam;
     } else {
-      cout
-          << "Nao foi possivel adicionar pois ja existe um carro com essa placa"
-          << endl;
-      return 0;
+      cout << "Nao foi possivel adicionar pois ja existe um carro com essa placa" << endl;
     }
   } else {
-    cout << "Não foi possivel adicionar o veiculo pois a lista está cheia"
-         << endl;
+    cout << "Não foi possivel adicionar o veiculo pois a lista está cheia" << endl;
     return 0;
   }
+  return -1;
 }
 
-int remover(
-    Tveiculo *bd[], int *tam,
-    string placa) { // empurra todos as posições do vetor para trás, para assim
-                    // retirar um sem deixar espaços em branco
+int remover(Tveiculo *bd[], int *tam, string placa) {
   Tveiculo *p = busca(bd, *tam, placa);
   int i = busca1(bd, *tam, placa); // retorna indice
-  if (p !=
-      NULL) { // se não for NULL o veiculo existe e pode ser removido, assim a
-              // partir da posição encontrada sobreescreve o que tava antes.
+  if (p != NULL) {
     for (; i < *tam - 1; i++) {
       bd[i] = bd[i + 1];
     }
@@ -165,11 +153,10 @@ void ordena(Tveiculo *bd[], int tam) {
 
   int i = 0;
   Tveiculo *aux;
-  for (; i < tam; i++) { // coloca as placas em outro vetor
+  for (; i < tam; i++) {
     ord[i] = bd[i];
   }
-  for (i = 0; i < tam ; i++) { // verifica se o que esta em j é maior no que
-                                  // esta em i, trocando as posicoes em seguida
+  for (i = 0; i < tam ; i++) {
     for (int j = 0; j < i; j++) {
       if (ord[j]->placa > ord[i]->placa) {
         aux = ord[i];
@@ -186,9 +173,6 @@ void valoresProx(Tveiculo *bd[], int tam, float valor) {
   Tveiculo *valoresProx[tam];
   int valoresAbs[tam];
   int positions[tam];
-//  float menor = abs(bd[0]->valor - valor);
-//  float menorAnt = 0;
-//  int indiceMenor = 0;
   int i, j;
 
   // populando o vetor com os valores absolutos
@@ -314,9 +298,6 @@ int main(int argc, char **argv) {
     case 1:
       inserir(bd, &tam);
       break;
-
-
-      
     case 2:
       cout << "Digite a placa do veiculo: ";
       cin >> placa;
@@ -346,15 +327,10 @@ int main(int argc, char **argv) {
       } else {
         cout << "Veículo procurado não existe no banco de dados." << endl;
       }
-      break;
-
-
-
-      
+      break; 
     case 3:
       char valor[1];
       int valorN;
-
       cout << "Digite o valor que deseja procurar: ";
       cin >> valor;
       valorN = atoi(valor);
@@ -366,22 +342,12 @@ int main(int argc, char **argv) {
       }
       valoresProx(bd, tam, valorN);
       break;
-
-
-      
     case 4:
       ordena(bd, tam);
       break;
-
-
-
-      
     case 5:
       imprime(bd, tam, 0);
       break;
-
-
-      
     case 6:
       transfere(bd, tam);
       for (int i = 0; i < tam; i++)
