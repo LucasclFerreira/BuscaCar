@@ -1,14 +1,3 @@
-/*−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−
- ∗ UNIFAL − Universidade Federal de Alfenas .
- ∗ BACHARELADO EM CIENCIA DA COMPUTACAO.
- ∗ Trabalho..: BuscaCar
- ∗ Disciplina: AEDS II
- ∗ Professor.: Paulo Alexandre Bressan
- ∗ Aluno.....: Gustavo Fidelis Camilo, Lucas Costa Lima Ferreira e Brandon Afonso de Souza
- * Matrículas: 2021.1.08.043, 2021.1.08.015 e 2021.1.08.045
- ∗ Data......: 03/11/2022
- ∗−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−*/
-
 #include <cstdlib>
 #include <fstream>
 #include <iostream>
